@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE struts-config PUBLIC
+       "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+       "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+	<form-beans>
+		<form-bean name="UserForm" type="com.cynthia.test.user.bean.User" />
+		<form-bean name="DeptForm" type="com.cynthia.test.dept.bean.Dept" />
+		<form-bean name="DispatchUserForm" type="com.cynthia.test.user.bean.User" />
+	</form-beans>
+	<global-forwards>
+		<forward name="error" path="/WEB-INF/error.jsp" redirect="false" />
+	</global-forwards>
+	<action-mappings>
+		<action name="{1}Form" path="/*/*Action"
+			scope="request" type="com.cynthia.test.{0}.action.{1}Action" >
+			<forward name="success" path="/WEB-INF/success.jsp" />
+		</action>
+	</action-mappings>
+	
+</struts-config>

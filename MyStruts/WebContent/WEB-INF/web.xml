@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name></display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- 设置拦截器 -->
+	<filter>
+		<filter-name>ActionFilter</filter-name>
+		<filter-class>com.cynthia.suit.common.filter.ActionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ActionFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>com.cynthia.suit.core.servlet.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+<!-- 		<init-param>
+			<param-name>config1</param-name>
+			<param-value>/WEB-INF/struts-config1.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>config2</param-name>
+			<param-value>/WEB-INF/struts-config2.xml</param-value>
+		</init-param> -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+</web-app>

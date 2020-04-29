@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE struts-config PUBLIC
+       "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+       "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+	<form-beans>
+		<!-- <form-bean name="StudentForm" type="com.cynthia.struts.test05Validator.form.StudentForm" /> -->
+	</form-beans>
+	<action-mappings>
+		<action name="UserForm" path="/user/UserAction"
+			scope="request" type="com.cynthia.test.user.action.UserAction" >
+			<forward name="success" path="/WEB-INF/success.jsp" />
+		</action>
+	</action-mappings>
+	
+</struts-config>
