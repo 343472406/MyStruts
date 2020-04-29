@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cynthia.springMybatis.mapper.UserMapper">
+	
+	<!-- 因为包扫描，可以直接写User，否则全限定名 -->
+<!-- 	<select id="selectList" resultType="User">
+		SELECT * FROM USER
+	</select>
+ -->
+</mapper>

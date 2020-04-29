@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+	<display-name>springmvc-demo</display-name>
+
+
+	<!-- 配置SpringMVC的请求编码过滤器 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<!-- 配置字符编码，解决乱码 -->
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+	
+		<!-- 
+			Web项目集成SpringMVC，配置 SpringMVC的前端控制器
+			所有请求不直接访问原生Servlet，而是经过SpringMVC
+			SpringMVC底层也是Servlet，所以还是配置Servlet 
+		-->
+	
+	<servlet>
+		<!-- 读取springMVC配置文件 -->
+		<servlet-name>springMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 读取SpringMVC配置文件 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!-- 读取配置文件 
+				问题：有多个spring相关配置文件如何读取
+				如 ：spring.xml 和springmvc.xml
+				
+				解决方案：
+					方案一：直接使用 统配 * 可以读取多个有相同前缀的文件
+					<param-value>classpath:spring*.xml</param-value>
+					方案二：先读取一个配置文件 如果 springdao.xml
+					再在springdao.xml文件中使用<import>标签导入 springmvc.xml文件
+					<import resource="classpath:springmvc.xml"/>
+			 -->
+			<param-value>classpath:/springdao.xml</param-value>
+		</init-param>
+		<!-- tomcat容器启动时就创建该servlet（-1是第一次调用时创建，0、1、2启动时创建，数字越小越前 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<!-- 
+			不能是/*,/已经是所有地址
+			<url-pattern>/*</url-pattern> 
+			<url-pattern>*.do/</url-pattern> 
+			/ 会覆盖tomcat默认的静态资源路径，一般用*.do等
+		 -->
+		<url-pattern>*.do</url-pattern> 
+	</servlet-mapping>
+
+</web-app>
