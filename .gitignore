@@ -1,5 +1,8 @@
 # Compiled class file
 *.class
+# 忽略编译后目录
+MyStruts/build/classes
+rebel.xml
 
 # Log file
 *.log
